@@ -4,8 +4,7 @@ const glob = require('glob');
 const { forStrictNullCheckEligibleFiles, forEachFileInSrc } = require('./src/getStrictNullCheckEligibleFiles');
 const { getImportsForFile } = require('./src/tsHelper');
 
-const vscodeRoot = path.join(process.cwd(), process.argv[2]);
-const srcRoot = path.join(vscodeRoot, 'src');
+const srcRoot = path.join(process.cwd(), process.argv[2]);
 
 let sort = true;
 let filter;
@@ -19,7 +18,7 @@ if (false) { // Generate test files listing
     includeTests = true;
 }
 
-forStrictNullCheckEligibleFiles(vscodeRoot, () => { }, { includeTests }).then(async eligibleFiles => {
+forStrictNullCheckEligibleFiles(srcRoot, () => { }, { includeTests }).then(async eligibleFiles => {
     const eligibleSet = new Set(eligibleFiles);
 
     const dependedOnCount = new Map(eligibleFiles.map(file => [file, 0]));
